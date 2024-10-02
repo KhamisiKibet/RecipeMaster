@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid
+    x:Class="RecipeMaster.Cells.RecipeCard"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:RecipeMaster.Models;assembly=RecipeMaster"
+    xmlns:local="clr-namespace:RecipeMaster.Cells"
+    xmlns:viewModels="clr-namespace:RecipeMaster.ViewModels"
+    xmlns:fontAwesome="clr-namespace:FontAwesome"
+    x:DataType="models:Recipe"
+    Padding="10">
+    <Frame Style="{StaticResource RecipeCard}">
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Frame
+                    WidthRequest="60"
+                    HeightRequest="60"
+                    CornerRadius="30"
+                    IsClippedToBounds="True"
+                    HasShadow="False"
+                    BorderColor="Transparent">
+                    <Image Source="{Binding ImagePath}" WidthRequest="60" HeightRequest="60" />
+                </Frame>
+
+                <StackLayout VerticalOptions="Center">
+                    <Label
+                        Style="{StaticResource LabelLarge}"
+                        Text="{Binding Title}"
+                        LineBreakMode="TailTruncation"
+                        VerticalOptions="Center" />
+                    <Label
+                        Style="{StaticResource LabelSmall}"
+                        Text="{Binding Description}"
+                        TextColor="#A9A9A9"
+                        LineBreakMode="TailTruncation"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Divider -->
+            <BoxView Color="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource SystemGray}}" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+            <Grid
+                Padding="10"
+                ColumnSpacing="10"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center">
+
+                <!-- Define columns with equal width -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Favorite Button -->
+                <Button Padding="5" CornerRadius="5" 
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Center" 
+                    Grid.Column="0"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:RecipeViewModel}}, Path=FavoriteCommand}"
+                    CommandParameter="{Binding .}">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            Size="16"
+                            FontFamily="FAS"
+                            Color="{Binding Favorite, Converter={StaticResource BoolToIconColorConverter}}"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Heart}" />
+                    </Button.ImageSource>
+                </Button>
+
+                <Button Padding="5" CornerRadius="5" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Column="1"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:RecipeViewModel}}, Path=EditRecipeCommand}"
+                    CommandParameter="{Binding .}">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            Size="16"
+                            FontFamily="FAS"
+                            Color="{AppThemeBinding Dark={StaticResource SystemGray3}, Light={StaticResource SystemGray3Dark}}"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Pen}" />
+                    </Button.ImageSource>
+                </Button>
+
+
+
+                <Button Padding="5" CornerRadius="5" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Column="2"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:RecipeViewModel}}, Path=DeleteRecipeCommand}"
+                        CommandParameter="{Binding .}">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            Size="16"
+                            FontFamily="FAS"
+                            Color="{AppThemeBinding Dark={StaticResource SystemGray3}, Light={StaticResource SystemGray3Dark}}"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Trash}" />
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
+        </StackLayout>
+    </Frame>
+</Grid>
