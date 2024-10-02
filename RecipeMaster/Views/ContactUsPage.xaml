@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RecipeMaster.Views.ContactUsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:RecipeMaster.ViewModels"
+    Title="Contact Us"
+    BackgroundColor="{AppThemeBinding 
+                    Dark={StaticResource WindowBackgroundColorDark}, 
+                    Light={StaticResource WindowBackgroundColor}}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout Spacing="10">
+                            <!-- Contact Us Header -->
+                            <Label Text="Contact Us"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,10"
+                   Style="{StaticResource LabelLarge}" />
+
+                            <!-- Divider -->
+                            <BoxView Color="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource SystemGray}}" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+
+                            <!-- Address -->
+                            <Label Text="Address:"
+                   FontSize="20"
+                   Margin="0,10,0,5"
+                   Style="{StaticResource LabelLarge}" />
+                            <Label Text="123 Recipe Lane, Brewtown, CA 90210"
+                   FontSize="16"
+                   LineBreakMode="WordWrap"
+                   Margin="0,0,0,20" />
+
+                            <!-- Divider -->
+                            <BoxView Color="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource SystemGray}}" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+
+                            <!-- Email -->
+                            <Label Text="Email:"
+                   FontSize="20"
+                   Margin="0,10,0,5"
+                   Style="{StaticResource LabelLarge}" />
+                            <Label Text="contact@myRecipeMaster.com"
+                   FontSize="16"
+                   LineBreakMode="WordWrap"
+                   Margin="0,0,0,20" />
+
+                            <!-- Divider -->
+                            <BoxView Color="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource SystemGray}}" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+
+                            <!-- Phone -->
+                            <Label Text="Phone:"
+                   FontSize="20"
+                   Margin="0,10,0,5"
+                   Style="{StaticResource LabelLarge}" />
+                            <Label Text="(123) 456-7890"
+                   FontSize="16"
+                   LineBreakMode="WordWrap" />
+
+                            <!-- Divider -->
+                            <BoxView Color="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource SystemGray}}" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+
+                            <!-- Social Media -->
+                            <Label Text="Follow Us:"
+                   FontSize="20"
+                   Margin="0,20,0,5"
+                   Style="{StaticResource LabelLarge}" />
+
+                            <Label Text="Facebook: facebook.com/myRecipeMaster"
+                   FontSize="16"
+                   Margin="0,0,0,5" />
+                            <Label Text="Twitter: twitter.com/myRecipeMaster"
+                   FontSize="16"
+                   Margin="0,0,0,5" />
+                            <Label Text="Instagram: instagram.com/myRecipeMaster"
+                   FontSize="16" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

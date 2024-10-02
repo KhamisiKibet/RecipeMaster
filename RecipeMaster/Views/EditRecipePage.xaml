@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:RecipeMaster.Models;assembly=RecipeMaster"
+             xmlns:viewmodels="clr-namespace:RecipeMaster.ViewModels;assembly=RecipeMaster"
+             x:Class="RecipeMaster.Views.EditRecipePage"
+             Title="Edit Recipe">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="10">
+                <!-- Recipe Title -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Title:" Style="{StaticResource LabelMedium}" />
+                            <Entry Text="{Binding Recipe.Title}" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+
+                <!-- Recipe Description -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Description:" Style="{StaticResource LabelMedium}" />
+                            <Entry Text="{Binding Recipe.Description}" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Recipe Details -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Details:" Style="{StaticResource LabelMedium}" />
+                            <Editor Text="{Binding Recipe.Details}" HeightRequest="150" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Recipe Image -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout Spacing="10">
+                            <Label Text="Image:" Style="{StaticResource LabelMedium}" />
+                            <Image Source="{Binding Recipe.ImagePath}" Aspect="AspectFit" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                            <Button Command="{Binding PickImageCommand}" Text="Pick Image" Style="{StaticResource ButtonOutline}"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Category Dropdown -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Category:" Style="{StaticResource LabelMedium}" />
+                            <Picker ItemsSource="{Binding Categories}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Recipe.Category}" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Tags Multi-Select List -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Tags:" Style="{StaticResource LabelMedium}" />
+                            <CollectionView ItemsSource="{Binding Tags}" SelectionMode="Multiple" SelectedItems="{Binding Recipe.Tags}" HeightRequest="200">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Save Button -->
+                <Button Command="{Binding SaveCommand}" Text="Save" Style="{StaticResource ButtonOutline}" />
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

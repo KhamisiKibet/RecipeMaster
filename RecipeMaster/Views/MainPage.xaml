@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RecipeMaster.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontAwesome="clr-namespace:FontAwesome"
+    xmlns:model="clr-namespace:RecipeMaster.Models;assembly=RecipeMaster"
+    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+    xmlns:viewmodels="clr-namespace:RecipeMaster.ViewModels"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:cells="clr-namespace:RecipeMaster.Cells"
+    x:Name="RecipePage"
+    x:DataType="viewmodels:RecipeViewModel"
+    BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:SelectedItemEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+            <DataTemplate x:Key="Normal">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem
+                            Command="{Binding Source={x:Reference RecipePage}, Path=BindingContext.FavoriteCommand}"
+                            CommandParameter="{Binding .}"
+                            Text="Favorite" />
+                        <MenuItem IsDestructive="True" Text="Delete" />
+                    </ViewCell.ContextActions>
+                    <cells:RecipeCard/>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="Special">
+                <ViewCell>
+                    <cells:SpecialCell/>
+                </ViewCell>
+            </DataTemplate>
+            <cells:RecipeDataTemplateSelector x:Key="RecipeSelector"
+                    Normal="{StaticResource Normal}"
+                    Special="{StaticResource Special}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ListView
+        CachingStrategy="RecycleElement"
+        GroupDisplayBinding="{Binding Key}"
+        IsGroupingEnabled="True"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        ItemsSource="{Binding RecipeGroups}"
+        RefreshCommand="{Binding RefreshCommand}"
+        SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"
+        Style="{StaticResource RecipeListView}"
+        HasUnevenRows="True"
+        ItemTemplate="{StaticResource RecipeSelector}">
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate x:DataType="{x:Null}">
+                <ViewCell>
+                    <StackLayout Padding="40,0">
+                        <Label Style="{StaticResource LabelMedium}" Text="{Binding Key}" HeightRequest="0" TextColor="Transparent"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+        <ListView.Footer>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Orientation="Vertical">
+                <Button
+                Command="{Binding LoadMoreCommand}"
+                Text="Load More"
+                HorizontalOptions="Center"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="{AppThemeBinding Dark={StaticResource SystemGray3}, Light={StaticResource SystemGray3Dark}}"
+                VerticalOptions="Center" >
+                    <Button.ImageSource>
+                        <FontImageSource
+                            Size="16"
+                            FontFamily="FAS"
+                            Color="{AppThemeBinding Dark={StaticResource SystemGray3}, Light={StaticResource SystemGray3Dark}}"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.ArrowCircleRight}" />
+                    </Button.ImageSource>
+                </Button>
+            </StackLayout>
+        </ListView.Footer>
+
+    </ListView>
+</ContentPage>

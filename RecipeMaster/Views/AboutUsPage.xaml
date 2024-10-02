@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RecipeMaster.Views.AboutUsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:RecipeMaster.ViewModels"
+    Title="About Us"
+    BackgroundColor="{AppThemeBinding 
+                    Dark={StaticResource WindowBackgroundColorDark}, 
+                    Light={StaticResource WindowBackgroundColor}}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="10">
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout Spacing="10">
+                            <!-- About Us Header -->
+                            <Label Text="About Us"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           Margin="0,20,0,10"
+                           Style="{StaticResource LabelLarge}" />
+
+                            <!-- Description -->
+                            <Label Text="Welcome to RecipeMaster! We are dedicated to providing the best Recipe recipes and resources for Recipe enthusiasts. Our mission is to inspire and help you explore the wonderful world of Recipe."
+                           FontSize="16"
+                           LineBreakMode="WordWrap"
+                           Margin="0,0,0,20" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout Spacing="10">
+                            <!-- Team Section -->
+                            <Label Text="Meet the Team"
+                   FontSize="20"
+                   Margin="0,20,0,10"
+                   Style="{StaticResource SubHeaderStyle}" />
+
+                            <Label Text="John Doe - Founder CEO"
+                   FontSize="16"
+                   Margin="0,0,0,5" />
+                            <Label Text="Jane Smith - Head of Recipe Research"
+                   FontSize="16"
+                   Margin="0,0,0,5" />
+                            <Label Text="Emily Johnson - Lead Developer"
+                   FontSize="16"
+                   Margin="0,0,0,5" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout Spacing="10">
+                            <!-- Contact Info -->
+                            <Label Text="Contact Us"
+                   FontSize="20"
+                   Margin="0,20,0,10"
+                   Style="{StaticResource SubHeaderStyle}" />
+
+                            <Label Text="Email: contact@myRecipeMaster.com"
+                   FontSize="16"
+                   Margin="0,0,0,5" />
+                            <Label Text="Phone: (123) 456-7890"
+                   FontSize="16"
+                   Margin="0,0,0,5" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

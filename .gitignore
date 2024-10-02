@@ -1,0 +1,53 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# Visual Studio
+*.sln.docstates
+
+# NuGet Packages
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+# .NET MAUI specific files
+RecipeMaster/**/*.csproj.user
+RecipeMaster/**/*.csproj.lock
+RecipeMaster/**/*.dll
+RecipeMaster/**/*.pdb
+RecipeMaster/**/*.mdb
+RecipeMaster/**/*.apk
+RecipeMaster/**/*.ipa
+RecipeMaster/**/*.app
+
+# VS Code workspace files
+*.code-workspace
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# DotNet tools
+*.dotnet-tools.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore assets if needed
+/assets/

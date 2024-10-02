@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RecipeMaster.Views.AddRecipePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:RecipeMaster.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:AddRecipeViewModel"
+    BackgroundColor="{AppThemeBinding 
+                    Dark={StaticResource WindowBackgroundColorDark}, 
+                    Light={StaticResource WindowBackgroundColor}}"
+    Shell.PresentationMode="Modal">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="10">
+                <!-- Recipe Name -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <!-- Recipe Name -->
+                            <Label Text="Recipe Name:"
+                               Style="{StaticResource LabelMedium}"/>
+                            <Entry Margin="5 0"
+                               Text="{Binding Title}" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Recipe Description -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Description:"
+                                Style="{StaticResource LabelMedium}" />
+                            <Entry Text="{Binding Description}" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Recipe Details -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Recipe Details:"
+                       Style="{StaticResource LabelMedium}" />
+                            <Editor Text="{Binding Details}"
+                        HeightRequest="150" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Image Picker -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout Spacing="10">
+                            <Label Text="Image:"
+                                   HorizontalOptions="Center"
+                                   Style="{StaticResource LabelMedium}" />
+                            <Image
+                                Source="{Binding SelectedImage}"
+                                Aspect="AspectFit"
+                                HeightRequest="200"
+                                WidthRequest="200"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+
+                            <Button
+                                Padding="10"
+                                Command="{Binding PickImageCommand}"
+                                HorizontalOptions="Center"
+                                Text="Pick Image"
+                                VerticalOptions="Center"
+                                Style="{StaticResource ButtonOutline}" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+                
+
+                <ActivityIndicator
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    VerticalOptions="Center" />
+
+                <!-- Category Dropdown -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Category:"
+                       Style="{StaticResource LabelMedium}" />
+                            <Picker
+                                ItemsSource="{Binding Categories}"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                                SelectedIndexChanged="OnCategorySelected"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+
+                <!-- Tags Multi-Select List -->
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout>
+                            <Label Text="Tags:"
+                       Style="{StaticResource LabelMedium}" />
+                            <CollectionView
+                                ItemsSource="{Binding Tags}"
+                                SelectionMode="Multiple"
+                                SelectedItems="{Binding SelectedTags}"
+                                HeightRequest="200">
+                                <!-- Adjust the height as needed -->
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Save Button -->
+                <Button
+                    Padding="20,0"
+                    Command="{Binding SaveCommand}"
+                    HorizontalOptions="Center"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Text="Save"
+                    VerticalOptions="EndAndExpand"
+                    Style="{StaticResource ButtonOutline}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

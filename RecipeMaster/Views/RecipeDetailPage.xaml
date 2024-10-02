@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipeMaster.Views.RecipeDetailPage"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             Title="Recipe Details">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10" Spacing="0">
+                <!-- Recipe Image -->
+                <Frame
+                    Style="{StaticResource RecipeCard}"
+                    CornerRadius="10" 
+                    HasShadow="True"
+                    Padding="0"
+                    Margin="0 0 5 0"
+                    BackgroundColor="Transparent">
+                    <Image Source="{Binding ImagePath}" HeightRequest="200" Aspect="AspectFill" />
+                </Frame>
+
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <!-- Recipe Title -->
+                                <Label Text="{Binding Title}" 
+                                   Style="{StaticResource LabelLarge}"
+                                   FontSize="24" 
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="End"
+                                   FontAttributes="Bold" 
+                                   Margin="0,15,0,5" />
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Start" Spacing="10" >
+                                    <!-- Favorite Button -->
+                                    <Button 
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="End" 
+                                        VerticalOptions="Start" 
+                                        Padding="0"
+                                        Grid.Column="0"
+                                        CommandParameter="{Binding .}">
+                                        <Button.ImageSource>
+                                            <FontImageSource
+                                                Size="20"
+                                                FontFamily="FAS"
+                                                Color="{Binding Favorite, Converter={StaticResource BoolToIconColorConverter}}"
+                                                Glyph="{x:Static fontAwesome:FontAwesomeIcons.Heart}" />
+                                        </Button.ImageSource>
+                                    </Button>
+                                    <!-- Share Button -->
+                                    <Button 
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="End" 
+                                        VerticalOptions="Start" 
+                                        Padding="0"
+                                        Grid.Column="0"
+                                        CommandParameter="{Binding .}">
+                                        <Button.ImageSource>
+                                            <FontImageSource
+                                                Color="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}"
+                                                Size="24"
+                                                FontFamily="FAS"
+                                                Glyph="{x:Static fontAwesome:FontAwesomeIcons.Share}" />
+                                        </Button.ImageSource>
+                                    </Button>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Spacing="10" >
+                                <!-- Favorite Button -->
+                                <Button 
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="End" 
+                                    VerticalOptions="End" 
+                                    Padding="0"
+                                    Grid.Column="0">
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                            Color="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}"
+                                            Size="16"
+                                            FontFamily="FAS"
+                                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.LayerGroup}" />
+                                    </Button.ImageSource>
+                                </Button>
+
+                                <Label Text="{Binding Category}" 
+                                   VerticalOptions="End" 
+                                   Style="{StaticResource LabelSmall}" />
+                                
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <Grid>
+                    <Frame Style="{StaticResource RecipeCard}" Margin="5 0">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <!-- Recipe Description -->
+                            <Label Text="{Binding Description}" 
+                               Margin="0,0,0,10" 
+                               Style="{StaticResource LabelMedium}"/>
+
+                            <!-- Divider -->
+                            <BoxView Color="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource SystemGray}}" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+                            <!-- Recipe Details -->
+                            <Label Text="{Binding Details}" 
+                               Padding="10 5"
+                               LineBreakMode="WordWrap" 
+                               Style="{StaticResource LabelMedium}" />
+
+                            <!-- Divider -->
+                            <BoxView Color="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource SystemGray}}" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+                            <!-- Recipe Tags -->
+                            <Label Text="{Binding Tags}" 
+                               Padding="10 5"
+                               LineBreakMode="WordWrap" 
+                               Style="{StaticResource LabelMedium}" />
+
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
