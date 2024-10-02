@@ -49,5 +49,3 @@ RecipeMaster/**/*.app
 .DS_Store
 Thumbs.db
 
-# Ignore assets if needed
-/assets/
