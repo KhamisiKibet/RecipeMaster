@@ -1,6 +1,7 @@
 # RecipeMaster
 
 <img src="https://raw.githubusercontent.com/KhamisiKibet/RecipeMaster/main/assets/Recipe.png" alt="My Project Logo" width="200" height="auto">
+
 <iframe width="320" height="240" src="https://www.youtube.com/embed/TstxyWGw2t0" frameborder="0" allowfullscreen></iframe>
 
 RecipeMaster is a dynamic and sleek mobile application designed for food enthusiasts to explore, create, and store their favorite recipes. Built using .NET MAUI, the app offers a beautiful user interface, easy navigation, and features to add, edit, and delete recipes.
